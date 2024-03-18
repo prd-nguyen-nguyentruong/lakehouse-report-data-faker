@@ -9,12 +9,18 @@ nowww = datetime.datetime.now()
 
 start_id_range = 1
 end_id_range = 1000000000
-a = "--no-populate-cache"
+rand_id = False
+
+def increment_counter(start):
+    global start_id_range
+    start_id_range += 1
+    return start_id_range
+
 
 ai_messages = lambda: {
-    "id": field("integer_number", start=start_id_range, end=end_id_range),
-    "lead_id": field("integer_number", start=start_id_range, end=end_id_range),
-    "question_id": field("integer_number", start=start_id_range, end=end_id_range),
+    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "lead_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "question_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
     "from_who": field("integer_number", start=start_id_range, end=end_id_range),
     "employee_id": field("integer_number", start=start_id_range, end=end_id_range),
     "to_user_id": field("integer_number", start=start_id_range, end=end_id_range),
@@ -47,14 +53,14 @@ ai_messages = lambda: {
 }
 
 ai_message_note = lambda: {
-    "x_id": field("integer_number", start=1, end=10),
-    "message_id": field("integer_number", start=1, end=1000000000),
+    "x_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "message_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
     "note_id": field("integer_number", start=1, end=1000000000),
 }
 
 ai_recorded_interview_messages = lambda: {
-    "id": field("integer_number", start=1, end=1000000000),
-    "uuid": field("integer_number", start=1, end=1000000000),
+    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "uuid": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
     "created_at": nowww,
     "updated_at": nowww,
     "message_type": field("integer_number", start=1, end=1000000000),
@@ -85,3 +91,7 @@ def set_start_id_range(num):
 def set_end_id_range(num):
     global end_id_range
     end_id_range = num
+
+def set_id_random(rand):
+    global rand_id
+    rand_id = rand
