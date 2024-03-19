@@ -16,11 +16,10 @@ def increment_counter(start):
     start_id_range += 1
     return start_id_range
 
-
 ai_messages = lambda: {
-    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
-    "lead_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
-    "question_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="a"),
+    "lead_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="b"),
+    "question_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="c"),
     "from_who": field("integer_number", start=start_id_range, end=end_id_range),
     "employee_id": field("integer_number", start=start_id_range, end=end_id_range),
     "to_user_id": field("integer_number", start=start_id_range, end=end_id_range),
@@ -53,8 +52,8 @@ ai_messages = lambda: {
 }
 
 ai_message_note = lambda: {
-    "x_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
-    "message_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "x_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="a"),
+    "message_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="b"),
     "note_id": field("integer_number", start=1, end=1000000000),
 }
 
