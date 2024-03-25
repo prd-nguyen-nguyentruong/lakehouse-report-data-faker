@@ -52,7 +52,7 @@ ai_messages = lambda: {
 }
 
 ai_message_note = lambda: {
-    "x_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="a"),
+    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="a"),
     "message_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment", accumulator="b"),
     "note_id": field("integer_number", start=1, end=1000000000),
 }
@@ -69,10 +69,58 @@ ai_recorded_interview_messages = lambda: {
     "media_type": field("integer_number", start=1, end=1000000000),
 }
 
+ai_interviews = lambda: {
+    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "uuid": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "user_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "company_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "candidate_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "sub_itv_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "interview_duration": field("integer_number", start=1, end=100),
+    "interview_type": field("integer_number", start=1, end=100),
+    "interview_jobloc_id": field("integer_number", start=1, end=100),
+    "primary_id": field("integer_number", start=1, end=100),
+    "status": field("integer_number", start=1, end=100),
+    "cal_event_id": field("integer_number", start=1, end=100),
+    "status": field("integer_number", start=1, end=100),
+    "deprecated_interview_type": field("integer_number", start=1, end=100),
+    "users_calendar_data": field("integer_number", start=1, end=100),
+}
+
+ai_lead_sub_itvs = lambda: {
+    "id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "lead_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "lead_id": field("integer_number", start=start_id_range, end=end_id_range) if rand_id else field("increment"),
+    "created_at": nowww,
+    "updated_at": nowww,
+    "order": field("integer_number", start=1, end=100),
+    "name": field("integer_number", start=1, end=100),
+    "job_loc_room_id": field("integer_number", start=1, end=100),
+    "interview_type": field("integer_number", start=1, end=100),
+    "itv_location_string": field("integer_number", start=1, end=100),
+    "interview_jobloc_id": field("integer_number", start=1, end=100),
+    "interview_duration": field("integer_number", start=1, end=100),
+    "pre_attendees": field("integer_number", start=1, end=100),
+    "interviewr_ids": field("integer_number", start=1, end=100),
+    "scheduled_at": nowww,
+    "any_avail_room": field("integer_number", start=1, end=100),
+    "deprecated_interview_type": field("integer_number", start=1, end=100),
+    "deleted_at": nowww,
+    "deleted_by": field("integer_number", start=1, end=100),
+    "is_deleted": field("integer_number", start=1, end=100),
+    "_user_chosen_slots": field("integer_number", start=1, end=100),
+}
+
+ai_leads = lambda: {
+
+}
+
 schemas = {
     "ai_messages": ai_messages,
     "ai_message_note": ai_message_note,
     "ai_recorded_interview_messages": ai_recorded_interview_messages,
+    "ai_interviews": ai_interviews,
+    "ai_lead_sub_itvs": ai_lead_sub_itvs
 }
 
 def get_schema(input_str):
