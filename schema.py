@@ -318,7 +318,8 @@ schemas = {
     "ai_recorded_interview_messages": ai_recorded_interview_messages,
     "ai_interviews": ai_interviews,
     "ai_lead_sub_itvs": ai_lead_sub_itvs,
-    "ai_leads": ai_leads
+    "ai_leads": ai_leads,
+    "ai_lead_extra_data": ai_lead_extra_data,
 }
 
 def get_schema(input_str):
