@@ -77,21 +77,67 @@ def preprocess_data(file_path, column_conversions):
 
 def main():
     header_list = [
-    "Candidate ID",
-    "Associated Req/Job ID's",
     "Candidate Full Name",
-    "Candidate Phone Number"
-    ]
+    "Candidate ID",
+    "Travel Required",
+    "Associated Req/Job ID's",
+    "Interview ID",
+    "Candidate External ID 1",
+    "Candidate External ID 2",
+    "Candidate External ID 3",
+    "Candidate Phone Number",
+    "Candidate Email",
+    "1st reminder for interviewer to add availability",
+    "2nd reminder for interviewer to add availability",
+    "3rd reminder for interviewer to add availability",
+    "Interview Reminders Preference  (opt-in to SMS/Email)",
+    "Interview Communication Source",
+    "Advanced Scheduling Action",
+    "Interview Scheduled by User Type",
+    "Interview Prep Title",
+    "External Group ID",
+    "Location Calendar Name",
+    "Interview Scheduled by EID",
+    "Interview Scheduled By Phone",
+    "Scheduled By User's Time Zone",
+    "Interview Scheduled By User's Job Title",
+    "Interview Prep Title",
+    "Candidate Current Journey Status",
+    "Round Robin Group Name",
+    "Conversation Name",
+    "Travel Required",
+    "Job Application ID",
+    "Primary Recruiter (Custom)",
+    "Interview Scheduled by Name",
+    "Interview Scheduled By Email",
+    "Interview Method",
+    "Group/ Job Name",
+    "Interview Duration (in minutes)",
+    "Candidate Associated To - User's Full Name",
+    "Candidate Associated To - User's Email",
+    "Candidate Associated To - User's Phone Number",
+    "Candidate Current Interview Status",
+    "Primary Manager (Custom)",
+    "Rescheduled",
+    "Interview Type",
+    "Conversation Type",
+    "Candidate Interview Request Currently Pending",
+    "Queued Interview Request Sent to Candidate Date (SMS)" # this field is wrong should be omited, follow the doc https://docs.google.com/spreadsheets/d/1jmuspCVLLStL4m5UmGHJr-b6uDHyl8cJRzjMoI0_HFM/edit#gid=0,
+    # "Time from interview accepted to selected interview date/time" # date,
+    # "Selected Interview Date and Time", # date
+    # "Interview Canceled by User", # date
+    # "Interview Canceled by Candidate", # date
+]
 
     column_conversions = {"Interview Communication Channels": sort_array}
-    preprocess_data("./data/report.csv", column_conversions)
-    preprocess_data("./data/report_1.csv", column_conversions)
-    hash1 = convert_to_hash('./data/report.csv', header_list)
-    hash2 = convert_to_hash('./data/report_1.csv', header_list)
+    preprocess_data("./data/origin.csv", column_conversions)
+    preprocess_data("./data/generate.csv", column_conversions)
+    hash1 = convert_to_hash('./data/origin.csv', header_list)
+    hash2 = convert_to_hash('./data/generate.csv', header_list)
     unique_hash1, unique_hash2 = list_not_common(hash1, hash2)
 
-    print("hash1: ", len(unique_hash1))
-    print("hash2: ", len(unique_hash2))
+    print("number of rows in original file compare to new report file: ", len(unique_hash1))
+    print("number of rows in new report file compare to original file: ", len(unique_hash2))
 
 
 if __name__ == "__main__":
